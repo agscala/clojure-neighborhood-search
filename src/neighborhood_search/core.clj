@@ -47,6 +47,10 @@
 			[name (map #(Float/parseFloat %) (str/split points #"[\, ]"))]
 			) unformatted-neighborhood-data))
 
+(defn find-neighborhood [lat lng]
+		(filter (fn [[name points]] (poly/region-contains? lat lng points)) formatted-neighborhood-data)
+)
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
