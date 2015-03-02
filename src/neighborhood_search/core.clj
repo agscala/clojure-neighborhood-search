@@ -27,7 +27,9 @@
     "Check lat/lngs from an input file to find which neighborhoods they exist in."
     [& args]
 
-    (if (not (.exists (io/file (first args))))
+    (if (or
+            (= 0 (count args))
+            (not (.exists (io/file (first args)))))
         (do
             (println "ERROR: Input file (argument 1) does not exist.")
             (System/exit 1)))
