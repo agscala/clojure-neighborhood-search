@@ -11,11 +11,16 @@
 			[name (map #(Float/parseFloat %) (str/split points #"[\, ]"))]
 			) unformatted-neighborhood-data))
 
-(defn find-neighborhood [lat lng]
-		(def result-neighborhoods
-			(filter (fn [[name points]] (poly/region-contains? lat lng points)) formatted-neighborhood-data))
+(defn internal-find-neighborhood [lat lng neighborhood-data]
+	"Internal implementation used for testing different data purposes"
+	(def result-neighborhoods
+		(filter (fn [[name points]] (poly/region-contains? lat lng points)) neighborhood-data))
 
-		(map (fn [[name points]] name) result-neighborhoods))
+	(map (fn [[neighborhood-name points]] (name neighborhood-name)) result-neighborhoods))
+
+(defn find-neighborhood
+	"internal-find-neighborhood convenience wrapper for using default data"
+	[lat lng] (internal-find-neighborhood lat lng formatted-neighborhood-data))
 
 (defn -main
   "I don't do a whole lot ... yet."
