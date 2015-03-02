@@ -1,6 +1,6 @@
 (ns neighborhood-search.core-test
-  (:require [clojure.test :refer :all]
-            [neighborhood-search.core :refer :all]))
+    (:require [clojure.test :refer :all]
+        [neighborhood-search.core :refer :all]))
 
 ; A point inside this polygon (-85.646726, 42.913097)
 (def polygon-data-A [
@@ -53,19 +53,19 @@
     -85.649292062877 42.9556000817054])
 
 (deftest test-find-neighborhood
-  (testing "Testing Ken-O-Sha Park"
-    (is (= (find-neighborhood -85.646282 42.912051) '("ken-O-Sha Park")))))
+    (testing "Testing Ken-O-Sha Park"
+        (is (= (find-neighborhood -85.646282 42.912051) '("ken-O-Sha Park")))))
 
 (deftest test-doesnt-die-with-int-args
-  (testing "Testing that integer args don't crash the system"
-    (is (= (find-neighborhood -85 42) '() ))))
+    (testing "Testing that integer args don't crash the system"
+        (is (= (find-neighborhood -85 42) '() ))))
 
 (deftest inside-multiple-neighborhoods
-  (testing "Testing if point can be in multiple neighborhoods"
-    (def weird-test-data {:foobar polygon-data-A, :bazbar polygon-data-A, :zooban polygon-data-B})
-    (is (= (internal-find-neighborhood -85.646726 42.913097 weird-test-data) '("foobar" "bazbar") ))))
+    (testing "Testing if point can be in multiple neighborhoods"
+        (def weird-test-data {:foobar polygon-data-A, :bazbar polygon-data-A, :zooban polygon-data-B})
+        (is (= (internal-find-neighborhood -85.646726 42.913097 weird-test-data) '("foobar" "bazbar") ))))
 
 (deftest inside-zero-neighborhoods
-  (testing "Testing if point can be in zero neighborhoods"
-    (is (= (find-neighborhood -9988.646282 9942.912051) '() ))))
+    (testing "Testing if point can be in zero neighborhoods"
+        (is (= (find-neighborhood -9988.646282 9942.912051) '() ))))
 
