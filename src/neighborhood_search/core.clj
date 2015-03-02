@@ -2,8 +2,8 @@
   (:gen-class)
   (:use [geo [poly :as poly]]
         [clj-yaml.core :as yaml]
-        [clojure.string :as str]
-        [clojure.java.io :as io]))
+        [clojure.java.io :as io])
+  (:require [clojure.string :as str]))
 
 (def unformatted-neighborhood-data (yaml/parse-string (slurp "neighborhood_data.txt")))
 
