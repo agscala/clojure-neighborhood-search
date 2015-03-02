@@ -48,8 +48,10 @@
 			) unformatted-neighborhood-data))
 
 (defn find-neighborhood [lat lng]
-		(filter (fn [[name points]] (poly/region-contains? lat lng points)) formatted-neighborhood-data)
-)
+		(def result-neighborhoods
+			(filter (fn [[name points]] (poly/region-contains? lat lng points)) formatted-neighborhood-data))
+
+		(map (fn [[name points]] name) result-neighborhoods))
 
 (defn -main
   "I don't do a whole lot ... yet."
