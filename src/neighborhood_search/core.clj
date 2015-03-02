@@ -1,8 +1,8 @@
 (ns neighborhood-search.core
   (:gen-class)
   (:use [geo [poly :as poly]]
-        [clj-yaml.core :as yaml])
-)
+        [clj-yaml.core :as yaml]
+        [clojure.string :as str]))
 
 (def alger-heights [
        -85.648052564782 42.9273362102149
