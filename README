@@ -1,0 +1,8 @@
+This application tests a series of lat/long points against a collection of polygons defining neighborhoods.
+
+RUNNING THIS APPLICATION:
+lein run test_input.txt
+
+TESTING THIS APPLICATION:
+lein test
+
