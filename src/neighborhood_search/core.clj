@@ -31,12 +31,13 @@
   (with-open [rdr (clojure.java.io/reader tests-filename)]
       (doseq [line (line-seq rdr)]
           (def unformatted-test (yaml/parse-string line))
-              (def formatted-test
-                  (map (fn [[testname point]]
-                      [testname (map #(Float/parseFloat %) (str/split point #"[\, ]"))]
-                  ) unformatted-test))
+          (def formatted-test
+              (map (fn [[testname point]]
+                  [testname (map #(Float/parseFloat %) (str/split point #"[\, ]"))]
+              ) unformatted-test))
 
-              (def test-result (apply (fn [[testname [lat lng]]] [testname (find-neighborhood lat lng)]) formatted-test))
+          (def test-result (apply (fn [[testname [lat lng]]] [testname (find-neighborhood lat lng)]) formatted-test))
 
-              (printf "%s: %s\n" (name (first test-result)) (str/join ", " (map #(name %) (last test-result))))))
+          (printf "%s: %s\n" (name (first test-result)) (str/join ", " (last test-result)))))
 )
+
