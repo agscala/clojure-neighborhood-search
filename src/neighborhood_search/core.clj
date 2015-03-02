@@ -2,7 +2,8 @@
   (:gen-class)
   (:use [geo [poly :as poly]]
         [clj-yaml.core :as yaml]
-        [clojure.string :as str]))
+        [clojure.string :as str]
+        [clojure.java.io :as io]))
 
 (def unformatted-neighborhood-data (yaml/parse-string (slurp "neighborhood_data.txt")))
 
@@ -25,6 +26,11 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
+
+  (if (not (.exists (io/file (first args))))
+      (do
+          (println "ERROR: Input file (argument 1) does not exist.")
+          (System/exit 1)))
 
   (def tests-filename (first args))
 
