@@ -40,6 +40,13 @@
        -85.648052564782 42.9273362102149
 ])
 
+(def unformatted-neighborhood-data (yaml/parse-string (slurp "neighborhood_data.txt")))
+
+(def formatted-neighborhood-data
+	(map (fn [[name points]]
+			[name (map #(Float/parseFloat %) (str/split points #"[\, ]"))]
+			) unformatted-neighborhood-data))
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
