@@ -24,7 +24,7 @@
 	[lat lng] (internal-find-neighborhood lat lng formatted-neighborhood-data))
 
 (defn -main
-  "I don't do a whole lot ... yet."
+  "Check lat/lngs from an input file to find which neighborhoods they exist in."
   [& args]
 
   (if (not (.exists (io/file (first args))))
